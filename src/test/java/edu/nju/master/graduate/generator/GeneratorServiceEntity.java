@@ -18,7 +18,7 @@ public class GeneratorServiceEntity {
     public void generateCode() {
         String packageName = "edu.nju.master.graduate";
         boolean serviceNameStartWithI = true;//user -> UserService, 设置成true: user -> IUserService
-        generateByTables(serviceNameStartWithI, packageName, "user");
+        generateByTables(serviceNameStartWithI, packageName, "url_record");
     }
 
     private void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
