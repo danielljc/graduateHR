@@ -29,4 +29,16 @@ public class UserService implements IUserService {
         else
             throw new BusinessException("用户名/密码错误");
     }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
+    public User insertUser(User user) {
+        return userDao.save(user);
+    }
+
+
 }

@@ -14,4 +14,8 @@ public interface IUserService {
 
     User doLogin(String username, String password);
 
+    User findUserByUsername(String username);
+
+    User insertUser(User user);
+
 }

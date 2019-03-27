@@ -8,14 +8,11 @@ import edu.nju.master.graduate.utils.CommunicationUtils;
 import edu.nju.master.graduate.utils.FileUtils;
 import edu.nju.master.graduate.utils.ResultUtil;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -71,7 +68,11 @@ public class InspectionController {
 
     }
 
-    @PostMapping("/picture/batch")
-    public void inspectPictureByBatch() {}
+    @ApiOperation("检测文件夹中的图片并分类")
+    @GetMapping("/picture/folder/{folder}")
+    public ResponseDto inspectPictureByBatch(@PathVariable String folder) {
+
+        return ResultUtil.getResult();
+    }
 
 }

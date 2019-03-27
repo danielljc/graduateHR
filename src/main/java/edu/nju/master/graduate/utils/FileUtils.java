@@ -1,11 +1,11 @@
 package edu.nju.master.graduate.utils;
 
 import edu.nju.master.graduate.entity.UrlRecord;
+import edu.nju.master.graduate.exception.BusinessException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
  * @date 2019-03-26 19:38
  */
 public class FileUtils {
+
+    public static String basePath = "D:/upload";
 
     /**
      * 解析前端上传的文件，返回网址列表
@@ -52,5 +54,45 @@ public class FileUtils {
         for (File file : files)
             if (file.exists())
                 file.delete();
+    }
+
+
+    /**
+     * 在basePath下保存上传的文件夹
+     * @param basePath
+     * @param files
+     */
+    public static String saveMultiFile(String basePath, MultipartFile[] files) {
+        if (files == null || files.length == 0) {
+            throw new BusinessException("找不到此文件夹");
+        }
+        if (basePath.endsWith("/")) {
+            basePath = basePath.substring(0, basePath.length() - 1);
+        }
+        for (MultipartFile file : files) {
+            String filePath = basePath + "/" + file.getOriginalFilename();
+            makeDir(filePath);
+            File dest = new File(filePath);
+            try {
+                file.transferTo(dest);
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "保存成功";
+    }
+
+    /**
+     * 确保目录存在，不存在则创建
+     * @param filePath
+     */
+    private static void makeDir(String filePath) {
+        if (filePath.lastIndexOf('/') > 0) {
+            String dirPath = filePath.substring(0, filePath.lastIndexOf('/'));
+            File dir = new File(dirPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+        }
     }
 }

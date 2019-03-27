@@ -1,11 +1,8 @@
 package edu.nju.master.graduate.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -39,16 +36,29 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
     /**
+     * 手机号
+     */
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    /**
      * 角色权限 0-普通用户 1-root用户
      */
     @Column(name = "role")
     private Integer role;
+    /**
+     * 用户状态
+     */
+    @Column(name = "status")
+    private Integer status;
     /**
      * 创建时间
      */
     @Column(name = "create_time")
     private Date createTime;
 
+    public User() {
+        this.createTime = new Date();
+    }
 
     public Integer getId() {
         return id;
@@ -74,12 +84,28 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Integer getRole() {
         return role;
     }
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Date getCreateTime() {
@@ -97,6 +123,8 @@ public class User implements Serializable {
         ", username=" + username +
         ", password=" + password +
         ", role=" + role +
+        ", phoneNumber=" + phoneNumber +
+        ", status=" + status +
         ", createTime=" + createTime +
         "}";
     }
