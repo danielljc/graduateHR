@@ -69,19 +69,22 @@ public class SystemController {
 
     @ApiOperation("后台新增用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "X-Token", dataType = "String", required = true, value = "Token值", defaultValue = "")
+            @ApiImplicitParam(paramType = "header", name = "X-Token", dataType = "String", required = true, value =
+                    "Token值", defaultValue = "")
     })
     @PostMapping("/add")
     @ResponseBody
-    public ResponseDto add(@Valid  @RequestBody AdminUserAddReqDto dto, BindingResult result) {
+    public ResponseDto add(@Valid @RequestBody AdminUserAddReqDto dto, BindingResult result) {
         ValidUtil.judgeResult(result);
         User existUser = userService.findUserByUsername(dto.getUsername());
-        if(existUser!=null)
+        if (existUser != null)
             throw new BusinessException(DictionaryConst.RESULT_CODE.FAIL, "用户名已被占用");
+        User phoneExitUser = userService.findUserByPhone(dto.getPhoneNumber());
+        if (phoneExitUser != null)
+            throw new BusinessException(DictionaryConst.RESULT_CODE.FAIL, "手机号已占用");
+        // 将前端信息复制到实体类
         User user = new User();
         BeanUtils.copyProperties(dto, user);
-        // 设置用户默认密码
-        user.setPassword("123456");
         // 用户状态正常
         user.setStatus(0);
         // 后台管理人员

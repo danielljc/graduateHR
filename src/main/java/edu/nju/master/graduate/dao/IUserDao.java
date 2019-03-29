@@ -9,4 +9,6 @@ public interface IUserDao extends JpaRepository<User,Integer> {
 
     User findByUsername(String username);
 
+    User findByPhoneNumber(String phoneNumber);
+
 }

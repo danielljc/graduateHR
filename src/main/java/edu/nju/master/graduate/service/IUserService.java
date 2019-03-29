@@ -18,4 +18,6 @@ public interface IUserService {
 
     User insertUser(User user);
 
+    User findUserByPhone(String phoneNumber);
+
 }
