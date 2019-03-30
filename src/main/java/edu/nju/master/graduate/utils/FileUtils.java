@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class FileUtils {
 
-    public static String basePath = "D:/upload";
+    public static String basePath = "D:/upload/";
 
     /**
      * 解析前端上传的文件，返回网址列表
