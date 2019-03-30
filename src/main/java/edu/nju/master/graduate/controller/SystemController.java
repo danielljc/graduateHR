@@ -67,7 +67,7 @@ public class SystemController {
         return ResultUtil.getResult("登录成功！");
     }
 
-    @ApiOperation("后台新增用户信息")
+    @ApiOperation("用户注册")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "header", name = "X-Token", dataType = "String", required = true, value =
                     "Token值", defaultValue = "")

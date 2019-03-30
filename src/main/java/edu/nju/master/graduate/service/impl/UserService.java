@@ -7,6 +7,8 @@ import edu.nju.master.graduate.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 服务实现类
@@ -43,6 +45,11 @@ public class UserService implements IUserService {
     @Override
     public User findUserByPhone(String phoneNumber) {
         return userDao.findByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public List<User> findByRole(Integer role) {
+        return userDao.findByRole(role);
     }
 
 

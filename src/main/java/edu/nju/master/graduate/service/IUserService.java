@@ -2,6 +2,8 @@ package edu.nju.master.graduate.service;
 
 import edu.nju.master.graduate.entity.User;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 服务类
@@ -19,5 +21,7 @@ public interface IUserService {
     User insertUser(User user);
 
     User findUserByPhone(String phoneNumber);
+
+    List<User> findByRole(Integer role);
 
 }
