@@ -39,7 +39,7 @@ public class UrlRecordService implements IUrlRecordService {
 
     @Override
     public List<UrlRecord> searchByKeyword(String keyword) {
-        return urlRecordDao.findByWebsiteNameContainingAndUrlContaining(keyword, keyword);
+        return urlRecordDao.findByWebsiteNameContainingOrUrlContaining(keyword, keyword);
     }
 
     @Override

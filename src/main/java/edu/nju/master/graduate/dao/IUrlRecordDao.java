@@ -12,5 +12,5 @@ public interface IUrlRecordDao extends JpaRepository<UrlRecord,Integer> {
 
     Optional<UrlRecord> findById(Integer id);
 
-    List<UrlRecord> findByWebsiteNameContainingAndUrlContaining(String keyword1, String keyword2);
+    List<UrlRecord> findByWebsiteNameContainingOrUrlContaining(String keyword1, String keyword2);
 }
